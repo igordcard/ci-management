@@ -11,5 +11,5 @@
     mvn-snapshot-id: snapshot
     mvn-staging-id: staging
     mvn-site-id: site
-    nexus-shapshot-repo: snapshots
+    nexus-snapshot-repo: snapshots
     staging-profile-id: a7925c009cb5d
