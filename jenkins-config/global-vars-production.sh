@@ -1,7 +1,9 @@
+DOCKER_REGISTRY=nexus3.akraino.org
 GERRIT_URL=https://gerrit.akraino.org/r
 GIT_URL=ssh://akraino-jobbuilder@gerrit.akraino.org:29418
 JENKINS_HOSTNAME=vex-yul-akraino-jenkins-prod-1
 LOGS_SERVER=https://logs.akraino.org
 NEXUS_URL=https://nexus.akraino.org
+REGISTRY_PORTS=10001 10002 10003 10004
 SILO=production
 SONAR_URL=https://sonar.akraino.org
