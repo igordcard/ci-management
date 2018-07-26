@@ -20,6 +20,15 @@
     project-type: freestyle
     node: '{build-node}'
 
+    gerrit_merge_triggers:
+      - change-merged-event
+      - comment-added-contains-event:
+          comment-contains-value: remerge$
+
+    gerrit_trigger_file_paths:
+      - compare-type: REG_EXP
+        pattern: '.*'
+
     parameters:
       - lf-infra-parameters:
           project: '{project}'
@@ -65,3 +74,16 @@
           - ../global-jjb/shell/lftools-install.sh
           - ../global-jjb/shell/deploy-maven-file.sh
       - lf-provide-maven-settings-cleanup
+
+    triggers:
+      - timed: '{obj:cron}'
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on: '{obj:gerrit_merge_triggers}'
+          projects:
+            - project-compare-type: ANT
+              project-pattern: '{project}'
+              branches:
+                - branch-compare-type: ANT
+                  branch-pattern: '**/{branch}'
+              file-paths: '{obj:gerrit_trigger_file_paths}'

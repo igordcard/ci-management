@@ -39,3 +39,4 @@
      - akraino-project-stream-release-config
     views:
       - common-view
+    cron: 'H H * * 0'  # push fresh snapshot weekly
