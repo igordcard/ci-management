@@ -14,13 +14,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-source $WORKSPACE/version.properties
-TAR_NAME="${PROJECT}-${VERSION}.tgz"
+# shellcheck source="$WORKSPACE/version.properties" disable=SC1091
+source "$WORKSPACE/version.properties"
+TAR_NAME="${PROJECT}-${VERSION}-SNAPSHOT.tgz"
 TARDIR=$UPLOAD_FILES_PATH
 
 set -e -u -x -o pipefail
-rm -fr $TARDIR
-mkdir $TARDIR
+rm -fr "$TARDIR"
+mkdir "$TARDIR"
 
 if [ "$PROJECT" == "addon-onap" ]
 then
@@ -28,20 +29,20 @@ then
     # ONAP addon is special.
     # Build the regional controller scripts tar ball
     ARTIFACT_NAME="onap-amsterdam-regional-controller-master"
-    echo "Making tar file ${TARDIR}/${ARTIFACT_NAME}.tgz"
+    echo "Making tar file ${TARDIR}/${ARTIFACT_NAME}${VERSION}-SNAPSHOT.tgz"
     cd ./src/regional_controller_scripts/
-    tar -cvzf ${TARDIR}/${ARTIFACT_NAME}.tgz *
+    tar -cvzf "${TARDIR}/${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz" -- *
 
     # Build the ONAP VM scripts tar ball
     ARTIFACT_NAME="onap-amsterdam-VM-master"
-    echo "Making tar file ${TARDIR}/${ARTIFACT_NAME}.tgz"
+    echo "Making tar file ${TARDIR}/${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz"
     cd ../onap_vm_scripts/
-    tar -cvzf ${TARDIR}/${ARTIFACT_NAME}.tgz *
+    tar -cvzf "${TARDIR}/${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz" -- *
 
 else
 
     echo "Making tar file ${TARDIR}/${TAR_NAME}"
-    tar -cvzf ${TARDIR}/${TAR_NAME} *
+    tar -cvzf "${TARDIR}/${TAR_NAME}" -- *
 
 fi
 set +u +x
