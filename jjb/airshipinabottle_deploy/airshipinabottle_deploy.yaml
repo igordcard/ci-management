@@ -18,23 +18,12 @@
     name: airshipinabottle_deploy
     project-name: airshipinabottle_deploy
     project: airshipinabottle_deploy
-    global-settings-file: global-settings
     build-node: centos7-builder-2c-1g
     stream: master
-    maven-repo-url: 'https://nexus.akraino.org'
-    java-version: openjdk8
-    mvn-version: mvn35
-    mvn-opts: ''
-    mvn-params: ''
     mvn-settings: airshipinabottle_deploy-settings
-    nexus-shapshot-repo: snapshots
-    build-timeout: 60
-    submodule-recursive: true
     group-id: org.akraino.airshipinabottle_deploy
-    repo-id: snapshots
     refspec: refs/heads/master
     branch: master
-    upload-files-dir: '/tmp/tardir'
     jobs:
       - akraino-project-stream-release-config
     views:

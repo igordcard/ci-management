@@ -18,23 +18,12 @@
     name: test_automation
     project-name: test_automation
     project: test_automation
-    global-settings-file: global-settings
     build-node: centos7-builder-2c-1g
     stream: master
-    maven-repo-url: 'https://nexus.akraino.org'
-    java-version: openjdk8
-    mvn-version: mvn35
-    mvn-opts: ''
-    mvn-params: ''
     mvn-settings: test_automation-settings
-    nexus-shapshot-repo: snapshots
-    build-timeout: 60
-    submodule-recursive: true
     group-id: org.akraino.test_automation
-    repo-id: snapshots
     refspec: refs/heads/master
     branch: master
-    upload-files-dir: '/tmp/tardir'
     jobs:
       - akraino-project-stream-release-config
     views:

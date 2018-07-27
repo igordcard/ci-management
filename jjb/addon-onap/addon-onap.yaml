@@ -18,25 +18,14 @@
     name: addon-onap
     project-name: addon-onap
     project: addon-onap
-    global-settings-file: global-settings
     build-node: centos7-builder-2c-1g
     stream: master
-    maven-repo-url: 'https://nexus.akraino.org'
-    java-version: openjdk8
-    mvn-version: mvn35
-    mvn-opts: ''
-    mvn-params: ''
     mvn-settings: addon-onap-settings
-    nexus-shapshot-repo: snapshots
-    build-timeout: 60
-    submodule-recursive: true
     group-id: org.akraino.addon-onap
-    repo-id: snapshots
     refspec: refs/heads/master
     branch: master
-    upload-files-dir: '/tmp/tardir'
     jobs:
-     - akraino-project-stream-release-config
+      - akraino-project-stream-release-config
     views:
       - common-view
     cron: 'H H * * 0'  # push fresh snapshot weekly
