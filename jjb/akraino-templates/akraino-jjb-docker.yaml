@@ -49,4 +49,4 @@
           - ../shell/build-docker.sh
 
     triggers:
-      - timed: '@daily'
+      - timed: '@hourly'
