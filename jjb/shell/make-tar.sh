@@ -15,6 +15,7 @@
 # limitations under the License.
 
 # shellcheck source="$WORKSPACE/version.properties" disable=SC1091
+dos2unix "${WORKSPACE}/version.properties"
 source "$WORKSPACE/version.properties"
 TAR_NAME="${PROJECT}-${VERSION}-SNAPSHOT.tgz"
 TARDIR=$UPLOAD_FILES_PATH
