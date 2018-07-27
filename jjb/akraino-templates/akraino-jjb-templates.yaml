@@ -17,17 +17,42 @@
 - job-template:
     id: akraino-project-stream-release-config
     name: '{project}-{stream}-release-config'
+
+    ######################
+    # Default parameters #
+    ######################
+
+    archive-artifacts: >
+      **/*.log
+      **/hs_err_*.log
+      **/target/**/feature.xml
+      **/target/failsafe-reports/failsafe-summary.xml
+      **/target/surefire-reports/*-output.txt
+    build-days-to-keep: 30
+    build-timeout: 60
+    java-version: openjdk8
+    maven-repo-url: '$NEXUS_URL/content/repositories/snapshots'
+    mvn-global-settings: global-settings
+    mvn-opts: ''
+    mvn-params: ''
+    mvn-version: mvn35
+    nexus-shapshot-repo: snapshots
+    repo-id: snapshots
+    staging-profile-id: ''  # Unused by this job.
+    stream: master
+    submodule-recursive: true
+    upload-files-dir: /tmp/tardir
+
+    #####################
+    # Job Configuration #
+    #####################
+
     project-type: freestyle
     node: '{build-node}'
 
-    gerrit_merge_triggers:
-      - change-merged-event
-      - comment-added-contains-event:
-          comment-contains-value: remerge$
-
-    gerrit_trigger_file_paths:
-      - compare-type: REG_EXP
-        pattern: '.*'
+    properties:
+      - lf-infra-properties:
+          build-days-to-keep: '{build-days-to-keep}'
 
     parameters:
       - lf-infra-parameters:
@@ -39,7 +64,30 @@
           mvn-opts: '{mvn-opts}'
           mvn-params: '{mvn-params}'
           mvn-version: '{mvn-version}'
+          # Staging repos do not make sense for CLM jobs so set it blank.
           staging-profile-id: '{staging-profile-id}'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '{archive-artifacts}'
+          description: Artifacts to archive to the logs server.
+      - string:
+          name: UPLOAD_FILES_PATH
+          default: '{upload-files-dir}'
+          description: File path to generate tarball and upload to repository.
+
+    wrappers:
+      - lf-infra-wrappers:
+          build-timeout: '{build-timeout}'
+          jenkins-ssh-credential: '{jenkins-ssh-credential}'
+
+    gerrit_merge_triggers:
+      - change-merged-event
+      - comment-added-contains-event:
+          comment-contains-value: remerge$
+
+    gerrit_trigger_file_paths:
+      - compare-type: REG_EXP
+        pattern: '.*'
 
     scm:
       - lf-infra-gerrit-scm:
@@ -49,31 +97,6 @@
           branch: '{branch}'
           submodule-recursive: '{submodule-recursive}'
           choosing-strategy: default
-
-    nexus-shapshot-repo: snapshots
-    builders:
-      - lf-maven-install:
-          mvn-version: '{mvn-version}'
-      - lf-update-java-alternatives:
-          java-version: '{java-version}'
-      - lf-provide-maven-settings:
-          global-settings-file: '{global-settings-file}'
-          settings-file: '{mvn-settings}'
-      - lf-infra-create-netrc:
-          server-id: '{mvn-staging-id}'
-      - inject:
-          properties-content: |
-              MAVEN_REPO_URL={maven-repo-url}
-              REPO_ID={repo-id}
-              GROUP_ID={group-id}
-              UPLOAD_FILES_PATH={upload-files-dir}
-              PROJECT={project}
-      - shell: !include-raw-escape:
-          - ../shell/make-tar.sh
-          - ../global-jjb/shell/common-variables.sh
-          - ../global-jjb/shell/lftools-install.sh
-          - ../global-jjb/shell/deploy-maven-file.sh
-      - lf-provide-maven-settings-cleanup
 
     triggers:
       - timed: '{obj:cron}'
@@ -87,3 +110,25 @@
                 - branch-compare-type: ANT
                   branch-pattern: '**/{branch}'
               file-paths: '{obj:gerrit_trigger_file_paths}'
+
+    builders:
+      - lf-maven-install:
+          mvn-version: '{mvn-version}'
+      - lf-update-java-alternatives:
+          java-version: '{java-version}'
+      - lf-provide-maven-settings:
+          global-settings-file: '{mvn-global-settings}'
+          settings-file: '{mvn-settings}'
+      - shell: !include-raw-escape:
+          - ../shell/make-tar.sh
+      - lf-infra-deploy-maven-file:
+          global-settings-file: '{mvn-global-settings}'
+          settings-file: '{mvn-settings}'
+          mvn-version: '{mvn-version}'
+          repo-id: '{repo-id}'
+          group-id: '{group-id}'
+          upload-files-dir: '{upload-files-dir}'
+          maven-repo-url: '{maven-repo-url}'
+
+    publishers:
+      - lf-infra-publish
