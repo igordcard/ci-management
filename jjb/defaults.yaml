@@ -8,7 +8,7 @@
     lftools-version: '<1.0.0'
 
     # Nexus 2 for jars
-    mvn-snapshot-id: snapshot
+    mvn-snapshot-id: snapshots
     mvn-staging-id: staging
     mvn-site-id: site
     nexus-snapshot-repo: snapshots
