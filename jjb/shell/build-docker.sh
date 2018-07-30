@@ -44,7 +44,7 @@ camunda_workflow)
 postgres_db_schema)
     CON_NAME='akraino_schema_db'
     source $WORKSPACE/version.properties
-    TARFILE="https://nexus.akraino.org/repository/maven-snapshots/org/akraino/camunda_workflow/${VERSION}/camunda_workflow-${VERSION}.tgz"
+    TARFILE="https://nexus.akraino.org/repository/maven-snapshots/org/akraino/yaml_builds/${VERSION}/yaml_builds-${VERSION}.tgz"
     curl -O ${TARFILE}
     (mkdir yaml_builds; cd yaml_builds; tar xfv ../$(basename ${TARFILE}))
     mv yaml_builds/templates akraino-j2templates
