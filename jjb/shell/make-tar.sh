@@ -14,6 +14,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+sudo yum install -y dos2unix
 # shellcheck source="$WORKSPACE/version.properties" disable=SC1091
 dos2unix "${WORKSPACE}/version.properties"
 source "$WORKSPACE/version.properties"
