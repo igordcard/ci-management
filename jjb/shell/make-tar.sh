@@ -29,6 +29,7 @@ then
 
     # ONAP addon is special.
     # Build the regional controller scripts tar ball
+    # NOTE: Remove the two "-SNAPSHOT" below when the ONAP version.properties is fixed.
     ARTIFACT_NAME="onap-amsterdam-regional-controller-${STREAM}"
     TAR_NAME="${ARTIFACT_NAME}-${VERSION}-SNAPSHOT.tgz"
     echo "Making tar file ${TARDIR}/${TAR_NAME}"
@@ -44,12 +45,7 @@ then
 
 else
 
-    if [ "$STREAM" == "master" ]
-    then
-        TAR_NAME="${PROJECT}-${VERSION}-SNAPSHOT.tgz"
-    else
-        TAR_NAME="${PROJECT}-${VERSION}-${STREAM}-SNAPSHOT.tgz"
-    fi
+    TAR_NAME="${PROJECT}-${VERSION}.tgz"
     echo "Making tar file ${TARDIR}/${TAR_NAME}"
     tar -cvzf "${TARDIR}/${TAR_NAME}" -- *
 
