@@ -6,6 +6,7 @@
     git-url: 'ssh://akraino-jobbuilder@gerrit.akraino.org:29418'
     jenkins-ssh-credential: jenkins-ssh
     lftools-version: '<1.0.0'
+    submodule-timeout: 10
 
     # Nexus 2 for jars
     mvn-snapshot-id: snapshots

@@ -96,6 +96,7 @@
           refspec: '{refspec}'
           branch: '{branch}'
           submodule-recursive: '{submodule-recursive}'
+          submodule-timeoute: '{submodule-timeout}'
           choosing-strategy: default
 
     triggers:
