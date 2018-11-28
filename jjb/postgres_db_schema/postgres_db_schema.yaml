@@ -35,4 +35,4 @@
     jobs:
       - 'akraino-project-stream-docker'
     views:
-      - common-view
+      - project-view

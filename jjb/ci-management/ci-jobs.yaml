@@ -11,4 +11,4 @@
     jjb-version: 2.2.1
 
     views:
-      - common-view
+      - project-view
