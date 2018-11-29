@@ -22,7 +22,6 @@ TARDIR=$UPLOAD_FILES_PATH
 
 set -e -u -x -o pipefail
 rm -fr "$TARDIR"
-mkdir "$TARDIR"
 
 if [ -n "$STAGING_BUILD" ]
 then
@@ -35,6 +34,10 @@ fi
 
 if [ "$PROJECT" == "addon-onap" ]
 then
+
+    # Make sure $TARDIR is an absolute path
+    mkdir "$TARDIR"
+    [[ "$TARDIR" != /* ]] && TARDIR="$PWD/$TARDIR"
 
     # ONAP addon is special.
     # Build the regional controller scripts tar ball
@@ -55,7 +58,10 @@ else
 
     TAR_NAME="${PROJECT}-${VERSION}.tgz"
     echo "Making tar file ${TARDIR}/${TAR_NAME}"
-    tar -cvzf "${TARDIR}/${TAR_NAME}" -- *
+    # Put the file in /tmp initially to prevent it $TARDIR from going into the tar file
+    tar -cvzf "/tmp/${TAR_NAME}" -- *
+    mkdir "$TARDIR"
+    cp "/tmp/${TAR_NAME}" "${TARDIR}/${TAR_NAME}"
 
 fi
 set +u +x
