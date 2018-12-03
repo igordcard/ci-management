@@ -20,7 +20,8 @@ dos2unix "${WORKSPACE}/version.properties"
 source "$WORKSPACE/version.properties"
 TARDIR=$UPLOAD_FILES_PATH
 
-set -e -u -x -o pipefail
+# STAGING_BUILD (below) may be unset
+set -e +u -x -o pipefail
 rm -fr "$TARDIR"
 
 if [ -n "$STAGING_BUILD" ]
@@ -31,6 +32,9 @@ else
     # Make sure the version has the "-SNAPSHOT" on the end for other builds
     [[ ! "$VERSION" =~ -SNAPSHOT$ ]] && VERSION="${VERSION}-SNAPSHOT"
 fi
+
+# STAGING_BUILD not used past this point
+set -u
 
 if [ "$PROJECT" == "addon-onap" ]
 then
