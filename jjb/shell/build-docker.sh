@@ -80,9 +80,11 @@ else
 
     postgres_db_schema)
         CON_NAME='akraino_schema_db'
-        # This runs on ubuntu, so yum wont work.
-        sudo apt install -y dos2unix
-        dos2unix "${WORKSPACE}/version.properties"
+        # Unfortunatly, there is another apt running in the background at this point, so this apt will always fail.
+        # E: Could not get lock /var/lib/dpkg/lock - open (11: Resource temporarily unavailable)
+        # Since it probably is not needed, I am just removing it.
+        # sudo apt install -y dos2unix
+        # dos2unix "${WORKSPACE}/version.properties"
         source "$WORKSPACE/version.properties"
 
         if [ -n "$STAGING_BUILD" -a -n "$AUTOSTAGING" ]
