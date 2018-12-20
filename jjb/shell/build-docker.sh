@@ -16,6 +16,7 @@
 
 DOCKER_REPO='nexus3.akraino.org:10003'
 STAGING_BUILD=${STAGING_BUILD:=''}
+AUTOSTAGING=${AUTOSTAGING:=''}
 
 set -e -u -x -o pipefail
 
