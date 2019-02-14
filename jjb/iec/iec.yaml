@@ -1,0 +1,6 @@
+---
+- project:
+    name: iec-project-view
+    project-name: iec
+    views:
+      - project-view

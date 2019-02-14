@@ -1,0 +1,6 @@
+---
+- project:
+    name: starlingx-project-view
+    project-name: starlingx
+    views:
+      - project-view

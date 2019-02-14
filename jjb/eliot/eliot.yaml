@@ -1,0 +1,6 @@
+---
+- project:
+    name: eliot-project-view
+    project-name: eliot
+    views:
+      - project-view
