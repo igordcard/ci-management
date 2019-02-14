@@ -1,0 +1,6 @@
+---
+- project:
+    name: umec-project-view
+    project-name: umec
+    views:
+      - project-view

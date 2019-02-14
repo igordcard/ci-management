@@ -1,0 +1,6 @@
+---
+- project:
+    name: nc-project-view
+    project-name: nc
+    views:
+      - project-view

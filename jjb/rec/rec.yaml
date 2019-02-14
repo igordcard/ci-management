@@ -1,0 +1,6 @@
+---
+- project:
+    name: rec-project-view
+    project-name: rec
+    views:
+      - project-view

@@ -1,0 +1,6 @@
+---
+- project:
+    name: evp-project-view
+    project-name: evp
+    views:
+      - project-view
