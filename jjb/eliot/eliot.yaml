@@ -1,6 +1,13 @@
 ---
 - project:
-    name: eliot-project-view
+    name: eliot-project
     project-name: eliot
+    project: eliot
+    stream: master
+    branch: master
+    refspec: refs/heads/master
+    build-node: centos7-builder-2c-1g
+    jobs:
+      - akraino-project-stream-verify
     views:
       - project-view
