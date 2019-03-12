@@ -4,8 +4,8 @@
     project-name: eliot
     project: eliot
     stream: master
-    branch: master
-    refspec: refs/heads/master
+    refspec: '$GERRIT_REFSPEC'
+    branch: '$GERRIT_BRANCH'
     build-node: centos7-builder-2c-1g
     jobs:
       - akraino-project-stream-verify

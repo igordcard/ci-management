@@ -281,8 +281,9 @@
     parameters:
       - lf-infra-parameters:
           project: '{project}'
-          branch: '{branch}'
           stream: '{stream}'
+          refspec: '{refspec}'
+          branch: '{branch}'
           lftools-version: '{lftools-version}'
 
       - string:
