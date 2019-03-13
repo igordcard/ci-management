@@ -282,7 +282,6 @@
       - lf-infra-parameters:
           project: '{project}'
           stream: '{stream}'
-          refspec: '{refspec}'
           branch: '{branch}'
           lftools-version: '{lftools-version}'
 
@@ -300,7 +299,7 @@
       - lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/{project}.git'
-          refspec: '{refspec}'
+          refspec: 'refs/heads/{branch}'
           branch: '{branch}'
           submodule-recursive: '{submodule-recursive}'
           submodule-timeout: '{submodule-timeout}'
@@ -316,8 +315,6 @@
                 exclude-no-code-change: 'false'
             - change-merged-event
             - draft-published-event
-            - comment-added-contains-event:
-                comment-contains-value: remerge$
             - comment-added-contains-event:
                 comment-contains-value: 'recheck'
             - comment-added-contains-event:
@@ -337,11 +334,9 @@
                   pattern: 'docs/**'
           readable-message: true
 
-
-
     builders:
       - shell: !include-raw-escape:
-          - ../shell/eliot-verify.sh
+          - ../shell/verify.sh
 
     publishers:
       - lf-infra-publish

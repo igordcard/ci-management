@@ -17,6 +17,6 @@
 set -o errexit
 set -o pipefail
 
-echo "Running eliot verification..."
+echo "Running verify.sh..."
 
 /bin/bash $WORKSPACE/verify.sh
