@@ -19,7 +19,7 @@
     project: camunda_workflow
     project-name: camunda_workflow
     mvn-settings: camunda_workflow-settings
-    mvn-params: '-f akraino/pom.xml'
+    mvn-params: '-f akraino'
     nexus-iq-namespace: 'akraino-'
     build-node: centos7-builder-2c-1g
     stream: master

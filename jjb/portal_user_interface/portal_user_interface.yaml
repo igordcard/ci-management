@@ -19,7 +19,7 @@
     project: portal_user_interface
     project-name: portal_user_interface
     mvn-settings: portal_user_interface-settings
-    mvn-params: '-f AECPortalMgmt/pom.xml'
+    mvn-params: '-f AECPortalMgmt'
     nexus-iq-namespace: 'akraino-'
     build-node: centos7-builder-2c-1g
     stream: master
