@@ -10,7 +10,8 @@
           gs-pathname: ''
           disabled: false
     jobs:
-      - 'gerrit-tox-verify'
+      - 'gerrit-tox-verify':
+          parallel: false
     parameters:
       - lf-infra-tox-parameters:
           tox-envs: '{tox-envs}'
