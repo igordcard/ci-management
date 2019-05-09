@@ -55,6 +55,10 @@
       - comment-added-contains-event:
           comment-contains-value: remerge$
 
+    gerrit_trigger_file_paths:
+      - compare-type: ANT
+        pattern: '**'
+
     scm:
       - lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
@@ -68,16 +72,14 @@
     triggers:
       - gerrit:
           server-name: '{gerrit-server-name}'
-          trigger-on:
-            - patchset-created-event:
-                exclude-drafts: 'false'
-                exclude-trivial-rebase: 'false'
-                exclude-no-code-change: 'false'
-            - change-merged-event
-            - comment-added-contains-event:
-                comment-contains-value: 'recheck'
-            - comment-added-contains-event:
-                comment-contains-value: 'reverify'
+          trigger-on: '{obj:gerrit_merge_triggers}'
+          projects:
+            - project-compare-type: ANT
+              project-pattern: '{project}'
+              branches:
+                - branch-compare-type: ANT
+                  branch-pattern: '**/{branch}'
+              file-paths: '{obj:gerrit_trigger_file_paths}'
 
     builders:
       - lf-infra-pre-build
