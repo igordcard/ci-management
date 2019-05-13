@@ -24,6 +24,9 @@
       - fuel-virtual:
           slave-label: 'aarch64_dev'
           scenario: 'k8-calico-iec-noha'
+      - compass-virtual:
+          slave-label: 'aarch64_dev'
+          scenario: 'k8-calico-iec-noha'
 
     jobs:
       - 'iec-{deploy-type}-daily-{stream}'
@@ -145,8 +148,26 @@
           choosing-strategy: default
 
     builders:
-      - shell:
-          !include-raw-escape: ./iec-fuel-deploy.sh
+      - description-setter:
+          description: "POD: $NODE_NAME"
+      - conditional-step:
+          condition-kind: regex-match
+          regex: 'compass-.*'
+          label: '{deploy-type}'
+          steps:
+            - shell:
+                !include-raw-escape: ./iec-compass-build.sh
+            - shell:
+                !include-raw-escape: ./iec-compass-deploy.sh
+            - shell:
+                !include-raw-escape: ./iec-compass-destroy.sh
+      - conditional-step:
+          condition-kind: regex-match
+          regex: 'fuel-.*'
+          label: '{deploy-type}'
+          steps:
+            - shell:
+                !include-raw-escape: ./iec-fuel-deploy.sh
 
     publishers:
       - email:
@@ -167,3 +188,7 @@
     name: 'iec-fuel-baremetal-daily-master-trigger'
     triggers:
       - timed: ''
+- trigger:
+    name: 'iec-compass-virtual-daily-master-trigger'
+    triggers:
+      - timed: '0 13 * * *'
