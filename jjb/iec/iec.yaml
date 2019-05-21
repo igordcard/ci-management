@@ -63,6 +63,10 @@
           name: CI_DEBUG
           default: 'false'
           description: 'Show debug output information'
+      - string:
+          name: ARCHIVE_ARTIFACTS
+          default: '**/*.log'
+          description: Artifacts to archive to the logs server.
 - parameter:
     name: 'seba_on_arm-defaults'
     parameters:
@@ -199,6 +203,7 @@
     publishers:
       - email:
           recipients: armband@enea.com
+      - lf-infra-publish
 
 - job-template:
     name: 'iec-install-{usecase}-{deploy-type}-daily-{stream}'
@@ -238,6 +243,7 @@
     publishers:
       - email:
           recipients: armband@enea.com
+      - lf-infra-publish
 
 ########################
 # trigger macros
