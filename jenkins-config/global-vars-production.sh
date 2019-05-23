@@ -1,5 +1,4 @@
 DOCKER_REGISTRY=nexus3.akraino.org
-DOCKERHUB_REGISTRY=docker.io
 GERRIT_URL=https://gerrit.akraino.org/r
 GIT_URL=ssh://akraino-jobbuilder@gerrit.akraino.org:29418
 JENKINS_HOSTNAME=vex-yul-akraino-jenkins-prod-1
