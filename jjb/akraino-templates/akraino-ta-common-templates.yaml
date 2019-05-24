@@ -262,8 +262,8 @@
           project: 'ta/build-tools'
           ref: '$SCM_REFSPEC_BUILD_TOOLS'
       - ta-builder-install-docker
+      - ta-builder-install-build-tools
       - shell: |2-
-          sudo yum -y install createrepo
           ta/build-tools/build_images.sh -m ta/manifest -w work
           find work
       - ta-lf-infra-ship-isos

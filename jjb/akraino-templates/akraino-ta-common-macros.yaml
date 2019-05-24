@@ -224,6 +224,14 @@
           # (adding to the group would require re-login)
           sudo chmod 777 /var/run/docker.sock
 
+- builder:
+    name: ta-builder-install-build-tools
+    builders:
+      - shell: |2-
+          sudo yum -y install createrepo libguestfs-tools-c jq
+          sudo systemctl start libvirtd
+          systemctl status libvirtd
+
 ###########
 # TRIGGER #
 ###########
