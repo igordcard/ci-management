@@ -203,7 +203,6 @@
       - lf-infra-publish
 
 - job-template:
-    # TODO: This is untested draft to start testing ISO build from
     id: akraino-project-release-ta-build
     name: 'ta-ci-build'
     archive-artifacts: >
@@ -214,6 +213,11 @@
       work/**/*.log
       work/**/*.txt
       work/**/*.json
+      work/results/bin_checksum/**
+      work/results/repo/**
+      work/results/repo_files/**
+      work/results/rpmlists/**
+      work/results/src_repo/**
     build-days-to-keep: 30
     build-timeout: 60
     branch: master
