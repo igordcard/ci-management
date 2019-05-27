@@ -268,6 +268,8 @@
             # Not sure if it would be better to use "change-merged" here and just clone the master
             # branch. With the current approach the SCM can be identical in verify and merge jobs.
             - ref-updated-event
+            - comment-added-contains-event:
+                comment-contains-value: 'remerge'
           projects:
             - project-compare-type: 'ANT'
               project-pattern: '{project}'
