@@ -155,7 +155,7 @@
           settings-file: '{mvn-settings}'
       - shell: |
           #!/bin/bash -ex
-          make -C docker/*/. .push_manifest
+          for sd in docker/*/.; do make -C $sd .push_manifest; done
 
 # parameter macro
 - parameter:
