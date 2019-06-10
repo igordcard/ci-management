@@ -16,7 +16,7 @@ sed -i "/^HOST_USER=/cHOST_USER=\${HOST_USER:-root}" ./config
 sed -i "s/10.169.40.106,123456/10.1.0.51,root\"\n\"10.1.0.52,root/g" ./config
 HOST_USER=root
 export HOST_USER
-sudo ./startup.sh
+./startup.sh
 
 
 exit 0
