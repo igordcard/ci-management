@@ -17,12 +17,14 @@
 set -e -u -x -o pipefail
 
 export PATH=$PATH:/usr/local/go/bin:/usr/local/bin
-KNI_PATH='go/src/gerrit.akraino.org/kni'
+KNI_PATH='src/gerrit.akraino.org/kni/installer'
 
 echo '---> Starting kni installer generation'
 
-mkdir -p $HOME/${KNI_PATH}/installer
+# move to right directory in GOPATH
+mkdir -p ${WORKSPACE}/${KNI_PATH}
 export GOPATH=${WORKSPACE}
+mv cmd pkg vendor ${WORKSPACE}/${KNI_PATH}/
 
 # do a host preparation and cleanup
 bash utils/prep_host.sh
@@ -36,14 +38,14 @@ make build 2>&1 | tee ${WORKSPACE}/build.log
 # now build the openshift-install binary and copy to gopath
 make binary 2>&1 | tee ${WORKSPACE}/binary.log
 
-# then start aws deploy
+# then start libvirt deploy
 export MASTER_MEMORY_MB=24000
 export CREDENTIALS=file://$(pwd)/akraino-secrets
 export BASE_REPO="git::https://gerrit.akraino.org/r/kni/templates"
-export BASE_PATH="libvirt/3-node"
+export BASE_PATH="libvirt/1-node"
 export SITE_REPO="git::https://gerrit.akraino.org/r/kni/templates"
 export SETTINGS_PATH="libvirt/sample_settings.yaml"
-export INSTALLER_PATH="file://${HOME}/${KNI_PATH}/installer/bin/openshift-install"
+export INSTALLER_PATH="file://${WORKSPACE}/bin/openshift-install"
 make deploy 2>&1 | tee ${WORKSPACE}/libvirt_deploy.log
 STATUS=$?
 
