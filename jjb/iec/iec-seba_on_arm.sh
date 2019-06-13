@@ -20,6 +20,12 @@ case "${JOB_NAME}" in
     K8S_SSH_KEY=${SSH_KEY}
     IEC_DIR="/home/${K8S_SSH_USER}/iec"
     ;;
+  *compass*)
+    K8S_MASTER_IP=${K8S_MASTER_IP_COMPASS}
+    K8S_SSH_USER=${K8S_SSH_USER_COMPASS}
+    K8S_SSH_PASSWORD=${K8S_SSH_PASSWORD_COMPASS}
+    IEC_DIR="/${K8S_SSH_USER_COMPASS}/iec"
+    ;;
   *)
     echo "Cannot determine installer from ${JOB_NAME}"
     exit 1
@@ -36,7 +42,7 @@ INSTALL_CMD="cd ${IEC_DIR}/src/use_cases/seba_on_arm/install; ./install.sh"
 
 if [ -n "${K8S_SSH_PASSWORD}" ]
 then
-  sshpass -o StrictHostKeyChecking=no -p "${K8S_SSH_PASSWORD}" \
+  sshpass -p "${K8S_SSH_PASSWORD}" ssh -o StrictHostKeyChecking=no \
     "${K8S_SSH_USER}"@"${K8S_MASTER_IP}" "${INSTALL_CMD}"
 elif [ -n "${K8S_SSH_KEY}" ]
 then

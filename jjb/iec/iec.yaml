@@ -92,6 +92,18 @@
           name: K8S_SSH_KEY
           default: ''
           description: 'SSH key to connect to the K8s master'
+      - string:
+          name: K8S_MASTER_IP_COMPASS
+          default: '10.1.0.50'
+          description: 'IP address to compass connect to the K8s master'
+      - string:
+          name: K8S_SSH_PASSWORD_COMPASS
+          default: 'root'
+          description: 'SSH password to compass connect to the K8s master'
+      - string:
+          name: K8S_SSH_USER_COMPASS
+          default: 'root'
+          description: 'SSH username to compass connect to the K8s master'
 
 ########################
 # job templates
