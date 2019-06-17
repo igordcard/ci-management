@@ -14,7 +14,7 @@ export KUBERNETES_VERSION="v1.13.0"
 
 export DHA="deploy/conf/vm_environment/k8-nosdn-nofeature-noha.yml"
 export NETWORK="deploy/conf/vm_environment/network.yml"
-export VIRT_NUMBER=3 VIRT_CPUS=2 VIRT_MEM=8192 VIRT_DISK=50G
+export VIRT_NUMBER=3 VIRT_CPUS=4 VIRT_MEM=12288 VIRT_DISK=50G
 
 ./deploy.sh
 
