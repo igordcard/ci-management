@@ -219,6 +219,8 @@
       - shell: |2-
           sudo yum-config-manager --add-repo https://download.docker.com/linux/centos/docker-ce.repo
           sudo yum -y install docker-ce docker-ce-cli containerd.io
+          sudo mkdir -p /etc/docker/
+          echo '{"experimental":true}' | sudo tee /etc/docker/daemon.json
           sudo systemctl start docker
           # Ugly hack to make docker usable for non-root
           # (adding to the group would require re-login)
