@@ -6,7 +6,11 @@ cd compass4nfv
 # Create 3 virtual machine
 echo -e "  - name: host3\n    roles:\n      - kube_node" >> deploy/conf/vm_environment/k8-nosdn-nofeature-noha.yml
 # Remove useless code
-sed -i "33,90d" deploy/adapters/ansible/kubernetes/ansible-kubernetes.yml
+# The ansible-kubernetes.yml file contains the list of softwares which will
+# be installed on VM. But for IEC projects, some parts are not essnetial. So
+# useless part will be removed.
+# Delete some contents from line 28 to end.
+sed -i '28,$d' deploy/adapters/ansible/kubernetes/ansible-kubernetes.yml
 
 export ADAPTER_OS_PATTERN='(?i)ubuntu-16.04.*arm.*'
 export OS_VERSION="xenial"
