@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 #
 # Copyright (c) 2019 Red Hat
 #
