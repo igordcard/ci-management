@@ -124,7 +124,7 @@
           settings-file: '{mvn-settings}'
       - shell: |
           #!/bin/bash -ex
-          make -C docker push-all
+          make -k -C docker push-all
 
 - job-template:
     name: 'validation-docker-manifest-{stream}'
@@ -155,7 +155,7 @@
           settings-file: '{mvn-settings}'
       - shell: |
           #!/bin/bash -ex
-          for sd in docker/*/.; do make -C $sd .push_manifest; done
+          for sd in docker/*/.; do make -k -C $sd .push_manifest; done
 
 # parameter macro
 - parameter:
