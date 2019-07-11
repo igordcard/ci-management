@@ -11,4 +11,5 @@
     jobs:
       - 'gerrit-tox-verify':
           parallel: false
+          submodule-disable: true
     build-node: centos7-builder-2c-1g
