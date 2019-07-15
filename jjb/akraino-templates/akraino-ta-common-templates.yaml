@@ -251,11 +251,6 @@
           build-timeout: '{build-timeout}'
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
 
-    # TODO: define how it should be triggered
-    # Ideally should build whenever RPM is uploaded to nexus
-    triggers:
-      - timed: "@daily"
-
     builders:
       - ta-builder-scm:
           git-url: '{git-url}'
