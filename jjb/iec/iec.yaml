@@ -4,7 +4,9 @@
     project-name: 'iec'
     project: '{project-name}'
     views:
-      - project-view
+      - common-view:
+          view-name: iec
+          view-regex: '^{project-name}-(tox|fuel|compass)-.*'
     # -------------------------------
     # BRANCH DEFINITIONS
     # -------------------------------
