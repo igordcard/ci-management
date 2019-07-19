@@ -232,6 +232,8 @@
         pattern: 'profiles/production.aws/*'
       - compare-type: REG_EXP
         pattern: 'sites/testing.aws.edge-sites.net/*'
+      - compare-type: REG_EXP
+        pattern: 'base/*'
 
     gerrit_verify_triggers:
       - patchset-created-event:
@@ -331,6 +333,8 @@
         pattern: 'profiles/testing.libvirt/*'
       - compare-type: REG_EXP
         pattern: 'sites/testing.virt.edge-sites.net/*'
+      - compare-type: REG_EXP
+        pattern: 'base/*'
 
     gerrit_verify_triggers:
       - patchset-created-event:
