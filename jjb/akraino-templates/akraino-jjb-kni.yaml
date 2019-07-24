@@ -229,11 +229,11 @@
 
     gerrit_trigger_file_paths:
       - compare-type: REG_EXP
-        pattern: 'profiles/production.aws/*'
+        pattern: 'profiles/production.aws/**'
       - compare-type: REG_EXP
-        pattern: 'sites/testing.aws.edge-sites.net/*'
+        pattern: 'sites/testing.aws.edge-sites.net/**'
       - compare-type: REG_EXP
-        pattern: 'base/*'
+        pattern: 'base/**'
 
     gerrit_verify_triggers:
       - patchset-created-event:
@@ -330,11 +330,11 @@
 
     gerrit_trigger_file_paths:
       - compare-type: REG_EXP
-        pattern: 'profiles/testing.libvirt/*'
+        pattern: 'profiles/testing.libvirt/**'
       - compare-type: REG_EXP
-        pattern: 'sites/testing.virt.edge-sites.net/*'
+        pattern: 'sites/testing.virt.edge-sites.net/**'
       - compare-type: REG_EXP
-        pattern: 'base/*'
+        pattern: 'base/**'
 
     gerrit_verify_triggers:
       - patchset-created-event:
