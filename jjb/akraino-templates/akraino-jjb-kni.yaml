@@ -133,9 +133,9 @@
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
 
     gerrit_trigger_file_paths:
-      - compare-type: REG_EXP
+      - compare-type: ANT
         pattern: 'Makefile'
-      - compare-type: REG_EXP
+      - compare-type: ANT
         pattern: 'cmd/binary.go'
 
     gerrit_verify_triggers:
@@ -228,11 +228,11 @@
               key-file-variable: KNI_KEY_PATH
 
     gerrit_trigger_file_paths:
-      - compare-type: REG_EXP
+      - compare-type: ANT
         pattern: 'profiles/production.aws/**'
-      - compare-type: REG_EXP
+      - compare-type: ANT
         pattern: 'sites/testing.aws.edge-sites.net/**'
-      - compare-type: REG_EXP
+      - compare-type: ANT
         pattern: 'base/**'
 
     gerrit_verify_triggers:
@@ -329,11 +329,11 @@
               key-file-variable: KNI_KEY_PATH
 
     gerrit_trigger_file_paths:
-      - compare-type: REG_EXP
+      - compare-type: ANT
         pattern: 'profiles/testing.libvirt/**'
-      - compare-type: REG_EXP
+      - compare-type: ANT
         pattern: 'sites/testing.virt.edge-sites.net/**'
-      - compare-type: REG_EXP
+      - compare-type: ANT
         pattern: 'base/**'
 
     gerrit_verify_triggers:
