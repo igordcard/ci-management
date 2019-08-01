@@ -21,6 +21,10 @@
     mvn-settings: portal_user_interface-settings
     mvn-params: '-f AECPortalMgmt'
     nexus-iq-namespace: 'akraino-'
+    sonarcloud: true
+    sonarcloud-project-organization: '{sonarcloud_project_organization}'
+    sonarcloud-api-token: '{sonarcloud_api_token}'
+    sonarcloud-project-key: '{sonarcloud_project_organization}_{project-name}'
     build-node: centos7-builder-2c-1g
     stream: master
     jobs:
