@@ -93,13 +93,17 @@
     name: ta-builder-rpm
     builders:
         - shell: |2-
-            sudo yum install -y createrepo
-            ta/build-tools/build_rpms.sh \
-              -m ta/manifest \
-              -r ta/rpmbuilder \
-              -w work \
-              {project-to-build}
-            find work/
+            #  Skip RPM build in case no *.spec file is found within the {project-to-build}
+            if [ -n "$(find {project-to-build} -name '*.spec')" ]
+            then
+                sudo yum install -y createrepo
+                ta/build-tools/build_rpms.sh \
+                 -m ta/manifest \
+                 -r ta/rpmbuilder \
+                 -w work \
+                 {project-to-build}
+                find work/
+            fi
 
 - builder:
     name: ta-builder-scm
