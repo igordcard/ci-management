@@ -26,35 +26,39 @@ nexus_repo_url="$ALT_NEXUS_URL/repository/$NEXUS_REPO"
 results_dir="$WORKSPACE/work/results"
 repo_name=`echo $WORKSPACE | awk -F '/' '{print $4}' | cut -d '-' -f2- | sed 's|\(.*\)-.*|\1|'`
 
-#Creating dir to move duplicate RPMs/SRPMs to avoid re-upload
+#Creating dirs to move duplicate RPMs/SRPMs to avoid re-upload and copy the changed RPMs/SRPMs
 mkdir "$results_dir/repo/duplicates"
 mkdir "$results_dir/src_repo/duplicates"
-
-#List all RPMs available in Nexus and move the duplicates
-for artifact in \
-  `ls $results_dir/repo`
-    do
-        if curl --head --fail $nexus_repo_url/$release_path/rpms/x86_64/$artifact
-        then
-            mv $results_dir/repo/$artifact $results_dir/repo/duplicates/
-        fi
-    done
-
-#List all SRPMs available in Nexus and move the duplicates
-for artifact in \
-  `ls $results_dir/src_repo`
-    do
-        if curl --head --fail $nexus_repo_url/$release_path/rpms/Sources/$artifact
-        then
-            mv $results_dir/src_repo/$artifact $results_dir/src_repo/duplicates/
-        fi
-    done
-
 mkdir -p "$x86_dir"
 mkdir -p "$sources_dir"
 
-cp "$results_dir/repo/"*.rpm "$x86_dir"
-cp "$results_dir/src_repo/"*.rpm "$sources_dir"
+#List all RPMs available in Nexus, move the duplicates and copy the changed ones
+for artifact in \
+  `ls $results_dir/repo/*.rpm`
+    do
+        if curl --head --fail $nexus_repo_url/$release_path/rpms/x86_64/$(basename $artifact)
+        then
+            echo "RPM - $(basename $artifact) already available in Nexus"
+            mv $results_dir/repo/$(basename $artifact) $results_dir/repo/duplicates/
+        else
+            echo "RPM - $(basename $artifact) is not available in Nexus. Will be uploaded"
+            cp $results_dir/repo/$(basename $artifact) $x86_dir
+        fi
+    done
+
+#List all Source RPMs available in Nexus, move the duplicates and copy the changed ones
+for artifact in \
+  `ls $results_dir/src_repo/*.rpm`
+    do
+        if curl --head --fail $nexus_repo_url/$release_path/rpms/Sources/$(basename $artifact)
+        then
+            echo "Source RPM - $(basename $artifact) already available in Nexus"
+            mv $results_dir/src_repo/$(basename $artifact) $results_dir/src_repo/duplicates/
+        else
+            echo "Source RPM - $(basename $artifact) is not available in Nexus. Will be uploaded"
+            cp $results_dir/src_repo/$(basename $artifact) $sources_dir
+        fi
+    done
 
 echo "-----> Upload RPMs to Nexus"
 lftools deploy nexus "$nexus_repo_url" "$repo_dir"
