@@ -135,6 +135,8 @@
           - ../shell/ta-rpm-deploy.sh
       - shell: !include-raw:
           - ../../global-jjb/shell/logs-clear-credentials.sh
+      - inject:
+          properties-content: 'ALT_NEXUS_URL='
 
 - builder:
     name: ta-lf-infra-ship-isos
