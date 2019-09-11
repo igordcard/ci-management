@@ -252,6 +252,7 @@
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
 
     builders:
+      - lf-display-node-uuid
       - ta-builder-scm:
           git-url: '{git-url}'
           project: 'ta/manifest'
