@@ -164,6 +164,10 @@
           properties-content: 'ALT_NEXUS_URL=https://nexus3.akraino.org'
       - lf-infra-create-netrc:
           server-id: rpm.snapshots
+      - inject:
+          properties-content: |
+            ALT_NEXUS_URL=
+            SERVER_ID=
       - shell: !include-raw:
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
@@ -171,8 +175,6 @@
           - ../shell/ta-rpm-deploy.sh
       - shell: !include-raw:
           - ../../global-jjb/shell/logs-clear-credentials.sh
-      - inject:
-          properties-content: 'ALT_NEXUS_URL='
 
 - builder:
     name: ta-lf-infra-ship-isos
