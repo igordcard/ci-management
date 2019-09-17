@@ -27,6 +27,7 @@ results_dir="$WORKSPACE/work/results"
 repo_name=`echo $WORKSPACE | awk -F '/' '{print $4}' | cut -d '-' -f2- | sed 's|\(.*\)-.*|\1|'`
 
 #Creating dirs to move duplicate RPMs/SRPMs to avoid re-upload and copy the changed RPMs/SRPMs
+rm -rf "$results_dir/repo/duplicates" "$results_dir/src_repo/duplicates"
 mkdir "$results_dir/repo/duplicates"
 mkdir "$results_dir/src_repo/duplicates"
 mkdir -p "$arch_dir"
