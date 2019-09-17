@@ -6,6 +6,7 @@ JENKINS_HOSTNAME=vex-yul-akraino-jenkins-prod-1
 LOGS_SERVER=https://logs.akraino.org
 NEXUS_URL=https://nexus.akraino.org
 REGISTRY_PORTS=10001 10002 10003 10004
+RPM_REPO_URL=nexus3.akraino.org
 SIGUL_BRIDGE_IP=10.30.216.9
 SIGUL_KEY=akraino-release-2018
 SILO=production

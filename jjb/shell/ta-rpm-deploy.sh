@@ -22,7 +22,7 @@ release_path=TA/release-1
 repo_dir="$WORKSPACE/work/nexus/$NEXUS_REPO"
 arch_dir="$repo_dir/$release_path/rpms/$(uname -m)"
 sources_dir="$repo_dir/$release_path/rpms/Sources"
-nexus_repo_url="$ALT_NEXUS_URL/repository/$NEXUS_REPO"
+nexus_repo_url="$RPM_REPO_URL/repository/$NEXUS_REPO"
 results_dir="$WORKSPACE/work/results"
 repo_name=`echo $WORKSPACE | awk -F '/' '{print $4}' | cut -d '-' -f2- | sed 's|\(.*\)-.*|\1|'`
 
