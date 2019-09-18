@@ -316,6 +316,11 @@
                 - branch-compare-type: 'ANT'
                   branch-pattern: '**/{branch}'
           readable-message: true
+          skip-vote:
+            successful: '{gerrit-skip-vote}'
+            failed: '{gerrit-skip-vote}'
+            unstable: '{gerrit-skip-vote}'
+            notbuilt: '{gerrit-skip-vote}'
 
 - trigger:
     name: ta-trigger-job-merge

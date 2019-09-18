@@ -19,6 +19,7 @@
     submodule-recursive: true
     node: '{build-node}'
     arch: amd64
+    gerrit-skip-vote: false
 
     properties:
       - lf-infra-properties:
@@ -58,6 +59,7 @@
     triggers:
       - ta-trigger-job-{project-type}:
           gerrit-server-name: '{gerrit-server-name}'
+          gerrit-skip-vote: '{gerrit-skip-vote}'
           project: '{project}'
           branch: '{branch}'
 
@@ -89,6 +91,7 @@
     project-type: freestyle
     submodule-recursive: true
     node: '{build-node}'
+    gerrit-skip-vote: false
 
     properties:
       - lf-infra-properties:
@@ -128,6 +131,7 @@
     triggers:
       - ta-trigger-job-{project-type}:
           gerrit-server-name: '{gerrit-server-name}'
+          gerrit-skip-vote: '{gerrit-skip-vote}'
           project: '{project}'
           branch: '{branch}'
 
@@ -157,6 +161,7 @@
     project-type: freestyle
     submodule-recursive: true
     node: '{build-node}'
+    gerrit-skip-vote: false
 
     properties:
       - lf-infra-properties:
@@ -194,6 +199,7 @@
     triggers:
       - ta-trigger-job-{project-type}:
           gerrit-server-name: '{gerrit-server-name}'
+          gerrit-skip-vote: '{gerrit-skip-vote}'
           project: '{project}'
           branch: '{branch}'
 
