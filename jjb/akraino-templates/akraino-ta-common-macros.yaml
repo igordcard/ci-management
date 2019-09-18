@@ -81,7 +81,7 @@
     builders:
         - shell: |2-
             echo "---> Node UUID:"
-            curl -s http://169.254.169.254/openstack/latest/meta_data.json | python -c 'import sys, json; data = json.load(sys.stdin); print(data["uuid"])'
+            curl -s http://169.254.169.254/openstack/latest/meta_data.json | python -c 'import sys, json; data = json.load(sys.stdin); print(data["uuid"])' || true
 
 - builder:
     name: ta-builder-tox
