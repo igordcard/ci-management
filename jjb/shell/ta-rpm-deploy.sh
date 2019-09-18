@@ -37,7 +37,7 @@ mkdir -p "$sources_dir"
 for artifact in \
   `ls $results_dir/repo/*.rpm`
     do
-        if curl --head --fail $nexus_repo_url/$release_path/rpms/$(uname -m)/$(basename $artifact)
+        if curl -L --head --fail $nexus_repo_url/$release_path/rpms/$(uname -m)/$(basename $artifact)
         then
             echo "RPM - $(basename $artifact) already available in Nexus"
             mv $results_dir/repo/$(basename $artifact) $results_dir/repo/duplicates/
@@ -51,7 +51,7 @@ for artifact in \
 for artifact in \
   `ls $results_dir/src_repo/*.rpm`
     do
-        if curl --head --fail $nexus_repo_url/$release_path/rpms/Sources/$(basename $artifact)
+        if curl -L --head --fail $nexus_repo_url/$release_path/rpms/Sources/$(basename $artifact)
         then
             echo "Source RPM - $(basename $artifact) already available in Nexus"
             mv $results_dir/src_repo/$(basename $artifact) $results_dir/src_repo/duplicates/
