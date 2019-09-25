@@ -114,7 +114,7 @@
                                         python-decoratortools yum-utils usermode pigz
                     # We need a specific version of mock (1.4.14) and devtools
                     # not available in Ubuntu/Debian repos, so fetch them from RHEL mirrors
-                    wget http://mirror.centos.org/centos/7.6.1810/os/x86_64/Packages/rpmdevtools-8.3-5.el7.noarch.rpm \
+                    wget http://vault.centos.org/centos/7.6.1810/os/x86_64/Packages/rpmdevtools-8.3-5.el7.noarch.rpm \
                          https://kojipkgs.fedoraproject.org/packages/mock/1.4.14/2.el7/noarch/mock-1.4.14-2.el7.noarch.rpm
                     sudo alien -d *.rpm
                     sudo dpkg -i *.deb
