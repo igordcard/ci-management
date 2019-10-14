@@ -13,9 +13,19 @@
 - project:
     name: kni-blueprint-pae
     project: 'kni/blueprint-pae'
-    project-name: kni-blueprint-pae
+    project-name: blueprint-pae
     stream: master
     branch: master
     jobs:
-      - kni-blueprint-pae-verify-deploy-aws
-      - kni-blueprint-pae-verify-deploy-libvirt
+      - kni-verify-deploy-aws
+      - kni-verify-deploy-libvirt
+
+- project:
+    name: kni-blueprint-basic-3-masters
+    project: 'kni/blueprint-basic-3-masters'
+    project-name: blueprint-basic-3-masters
+    stream: master
+    branch: master
+    jobs:
+      - kni-verify-deploy-aws
+      - kni-verify-deploy-libvirt

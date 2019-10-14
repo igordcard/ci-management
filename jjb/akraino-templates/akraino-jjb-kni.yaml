@@ -181,8 +181,8 @@
       - lf-infra-publish
 
 - job-template:
-    id: kni-blueprint-pae-verify-deploy-aws
-    name: '{project-name}-verify-deploy-aws'
+    id: kni-verify-deploy-aws
+    name: 'kni-{project-name}-verify-deploy-aws'
 
     ######################
     # Default parameters #
@@ -254,7 +254,7 @@
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
           choosing-strategy: default
-          basedir: 'blueprint-pae'
+          basedir: '{project-name}'
       - akraino-lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/kni/installer.git'
@@ -291,8 +291,8 @@
       - lf-infra-publish
 
 - job-template:
-    id: kni-blueprint-pae-verify-deploy-libvirt
-    name: '{project-name}-verify-deploy-libvirt'
+    id: kni-verify-deploy-libvirt
+    name: 'kni-{project-name}-verify-deploy-libvirt'
 
     ######################
     # Default parameters #
@@ -376,7 +376,7 @@
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
           choosing-strategy: default
-          basedir: 'blueprint-pae'
+          basedir: '{project-name}'
       - akraino-lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/kni/installer.git'
