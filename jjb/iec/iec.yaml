@@ -97,7 +97,7 @@
     parameters:
       - string: &k8s_master_ip
           name: K8S_MASTER_IP
-          default: ''
+          default: '172.16.10.36'
           description: 'IP address to connect to the K8s master'
       - string: &k8s_ssh_user
           name: K8S_SSH_USER
@@ -109,7 +109,7 @@
           description: 'SSH password to connect to the K8s master'
       - string: &k8s_ssh_key
           name: K8S_SSH_KEY
-          default: ''
+          default: '/var/lib/opnfv/mcp.rsa'
           description: 'SSH key to connect to the K8s master'
 - parameter:
     <<: *k8s_fuel_ubuntu1604_parameter
