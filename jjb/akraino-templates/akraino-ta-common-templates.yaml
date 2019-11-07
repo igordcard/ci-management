@@ -258,6 +258,23 @@
           build-timeout: '{build-timeout}'
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
 
+    triggers:
+      - gerrit:
+          server-name: '{gerrit-server-name}'
+          trigger-on:
+            - ref-updated-event
+          projects:
+            - project-compare-type: 'ANT'
+              project-pattern: 'ta/manifest'
+              branches:
+                - branch-compare-type: 'ANT'
+                  branch-pattern: '**/{branch}'
+            - project-compare-type: 'ANT'
+              project-pattern: 'ta/build-tools'
+              branches:
+                - branch-compare-type: 'ANT'
+                  branch-pattern: '**/{branch}'
+
     builders:
       - lf-display-node-uuid
       - ta-builder-scm:
