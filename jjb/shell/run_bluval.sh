@@ -14,6 +14,12 @@ set -o pipefail
 cwd=$(pwd)
 is_optional="false"
 
+finish() {
+    # Fix ownership of output files
+    user_id=$(stat -c '%u:%g' $cwd)
+    sudo chown -R ${user_id} $results_dir
+}
+
 info ()  {
     logger -s -t "run_blu_val.info" "$*"
 }
@@ -111,6 +117,8 @@ then
             "${ssh_user}"@"${k8s_master}":~/.kube/* "$k8s_config_dir"
     fi
 fi
+
+trap finish EXIT
 
 if [ ! -d "$cwd/validation" ]
 then
