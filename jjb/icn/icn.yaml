@@ -19,11 +19,11 @@
     name: icn
     project: icn
     project-name: icn
-    gate:
-      - bashate
     build-node: icn-dev
     stream:
       - master:
           branch: master
     jobs:
-      - akraino-project-stream-verify-gate
+      - akraino-project-stream-verify
+    views:
+      - project-view
