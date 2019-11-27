@@ -12,16 +12,19 @@ set -o errexit
 set -o pipefail
 
 cwd=$(pwd)
+current_user=$(whoami)
 is_optional="false"
-
-finish() {
-    # Fix ownership of output files
-    user_id=$(stat -c '%u:%g' $cwd)
-    sudo chown -R ${user_id} $results_dir
-}
 
 info ()  {
     logger -s -t "run_blu_val.info" "$*"
+}
+
+change_res_owner() {
+# change owner of results created by root in container
+    if [ -d "$results_dir" ]
+    then
+        sudo chown -R "$current_user" "$results_dir"
+    fi
 }
 
 usage() {
@@ -118,8 +121,6 @@ then
     fi
 fi
 
-trap finish EXIT
-
 if [ ! -d "$cwd/validation" ]
 then
     git clone http://gerrit.akraino.org/r/validation
@@ -142,5 +143,17 @@ if [ "$is_optional" == "true" ] || [ "$OPTIONAL" == "yes" ]
 then
     options+=" -o"
 fi
+
+set +e
+# even if the script fails we need to change the owner of results
 # shellcheck disable=SC2086
 python3 validation/bluval/blucon.py $options "$blueprint_name"
+
+if [ $? -ne 0 ]; then
+    change_res_owner
+    error "Bluval validation failed!"
+fi
+
+set -e
+
+change_res_owner
