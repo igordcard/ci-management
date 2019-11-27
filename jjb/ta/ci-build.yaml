@@ -14,6 +14,6 @@
     project-name: none
     build-node: aarch64_dev
     stream: master
-    build-timeout: 120
+    build-timeout: 180
     jobs:
       - akraino-project-release-ta-build
