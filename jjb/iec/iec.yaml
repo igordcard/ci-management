@@ -224,9 +224,9 @@
               unstable-threshold: 'FAILURE'
           - project: 'iec-{iecType}-destroy-{installer}-{deploy_type}-{os}-daily-{stream}'
             current-parameters: false
-            predefined-parameters:
+            predefined-parameters: |
               DEPLOY_SCENARIO={scenario}
-              IEC_TYPE='{iecType}'
+              IEC_TYPE={iecType}
             same-node: true
             block: true
 
