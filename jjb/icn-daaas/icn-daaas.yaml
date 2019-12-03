@@ -17,9 +17,9 @@
 #
 - project:
     name: icn-daaas
-    project: icn-daaas
+    project: 'icn/daaas'
     project-name: icn-daaas
-    build-node: icn-daaas-dev
+    build-node: icn-dev
     stream:
       - master:
           branch: master
