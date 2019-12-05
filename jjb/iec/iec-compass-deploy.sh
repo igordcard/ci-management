@@ -30,6 +30,10 @@ modify_workdir(){
   ln -sfn $(pwd)/work $COMPASS_WORK_DIR
 
   sed -i "s#\$COMPASS_DIR/work#$COMPASS_WORK_DIR#g" deploy/launch.sh
+
+  # Fix docker-compose -> requests version mismatch with other
+  # Akraino CI jobs (installed requests should be >= 2.12)
+  sed -i "s/\(docker-compose\)==1.14.0/\1==1.24.1/g" deploy/prepare.sh
 }
 
 config_vm
