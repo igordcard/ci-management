@@ -205,7 +205,7 @@
           blocking-jobs:
             - '.*-fuel-{deploy_type}-.*'
             - '.*-compass-{deploy_type}-.*'
-          blocking-level: 'NODE'
+          block-level: 'NODE'
 
     wrappers:
       - build-name:
@@ -282,7 +282,7 @@
             - '.*-{iecType}-deploy-{installer}-{deploy_type}-.*'
             - '.*-{iecType}-destroy-{installer}-{deploy_type}-.*'
             - '.*-{iecType}-install-.*-{installer}-{deploy_type}-.*'
-          blocking-level: 'NODE'
+          block-level: 'NODE'
 
     parameters:
       - lf-infra-parameters:

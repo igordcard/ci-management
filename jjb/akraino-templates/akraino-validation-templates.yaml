@@ -21,7 +21,7 @@
           use-build-blocker: true
           blocking-jobs:
             - 'validation-docker-.*'
-          blocking-level: 'NODE'
+          block-level: 'NODE'
     scm:
       - validation-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
@@ -78,7 +78,7 @@
           use-build-blocker: true
           blocking-jobs:
             - 'validation-docker-build-.*'
-          blocking-level: 'NODE'
+          block-level: 'NODE'
     scm:
      - validation-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
