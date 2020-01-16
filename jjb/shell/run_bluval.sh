@@ -28,7 +28,8 @@ change_res_owner() {
 }
 
 usage() {
-    echo "usage: $0 -n <blueprint_name>" >&2
+    echo "usage: $0" >&2
+    echo "[-n <blueprint_name>">&2
     echo "[-r <results_dir> results dir">&2
     echo "[-b <blueprint_yaml> blueprint definition">&2
     echo "[-k <k8s_config_dir> k8s config dir">&2
@@ -80,6 +81,7 @@ while getopts "j:k:u:s:b:l:r:n:ov:" optchar; do
 done
 
 # Blueprint name is mandatory
+blueprint_name=${blueprint_name:-$BLUEPRINT}
 if [ -z "$blueprint_name" ]
 then
     usage
@@ -121,19 +123,14 @@ then
     fi
 fi
 
-if [ ! -d "$cwd/validation" ]
-then
-    git clone http://gerrit.akraino.org/r/validation
-fi
-
 if [[ -n $blueprint_yaml ]]
 then
-    cp "$blueprint_yaml" ./validation/bluval/
+    cp "$blueprint_yaml" ./bluval/
 fi
 
-volumes_path="$cwd/validation/bluval/volumes.yaml"
+volumes_path="$cwd/bluval/volumes.yaml"
 #update information in volumes yaml
-sed -i -e "/kube_config_dir/{n; s@local: ''@local: '$k8s_config_dir'@}" -e "/blueprint_dir/{n; s@local: ''@local: '$cwd/validation/bluval/'@}" -e "/results_dir/{n; s@local: ''@local: '$results_dir'@}" "$volumes_path"
+sed -i -e "/kube_config_dir/{n; s@local: ''@local: '$k8s_config_dir'@}" -e "/blueprint_dir/{n; s@local: ''@local: '$cwd/bluval/'@}" -e "/results_dir/{n; s@local: ''@local: '$results_dir'@}" "$volumes_path"
 
 if [[ -n $blueprint_layer ]]
 then
@@ -144,10 +141,12 @@ then
     options+=" -o"
 fi
 
+printf 'ok / PASS /\nerror / FAIL /\n' > ./bluval/rules.txt
+
 set +e
 # even if the script fails we need to change the owner of results
 # shellcheck disable=SC2086
-python3 validation/bluval/blucon.py $options "$blueprint_name"
+python3 bluval/blucon.py $options "$blueprint_name"
 
 if [ $? -ne 0 ]; then
     change_res_owner
