@@ -11,7 +11,7 @@
       - 2.0.1:
           branch: 'master'
           refs_tag: 'tags'
-          disabled: false
+          disabled: true
 
     arch_tag:
       - 'amd64':
