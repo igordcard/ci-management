@@ -21,7 +21,7 @@ info ()  {
 }
 
 has_substring() {
-   [ "$1" != "${2/$1/}" ]
+    [[ $1 =~ $2 ]]
 }
 
 change_res_owner() {
@@ -168,8 +168,8 @@ else
     BUILD_URL="${JENKINS_HOSTNAME}/job/${JOB_NAME}/${BUILD_NUMBER}/"
     zip -r results.zip ./results
     lftools deploy nexus-zip "$NEXUS_URL" logs "$NEXUS_PATH" results.zip
+    rm results.zip
 fi
 
-rm results.zip
 rm -f ~/.netrc
 
