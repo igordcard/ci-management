@@ -17,15 +17,26 @@
 - project:
     project: 'portal_user_interface/portal-onapsdk'
     project-name: portal_user_interface-portal-onapsdk
-    name: portal_user_interface-portal-onapsdk-tox-verify
-    stream:
-      - master:
-          branch: '{stream}'
-          gs-pathname: ''
-          disabled: false
+    name: portal_user_interface-portal-onapsdk
+    build-node: centos7-builder-2c-1g
+    mvn-settings: portal_user_interface-settings
+    mvn-params: ''
+    nexus-iq-namespace: 'akraino-'
+    sonarcloud: true
+    sonarcloud-project-organization: '{sonarcloud_project_organization}'
+    sonarcloud-api-token: '{sonarcloud_api_token}'
+    sonarcloud-project-key: '{sonarcloud_project_organization}_portal_user_interface'
+    stream: master
     jobs:
       - 'gerrit-tox-verify':
           parallel: false
           submodule-disable: true
-    build-node: centos7-builder-2c-1g
-
+          stream:
+            - master:
+                branch: '{stream}'
+                gs-pathname: ''
+                disabled: false
+      - '{project-name}-maven-jobs'
+      - gerrit-maven-sonar
+    views:
+      - project-view
