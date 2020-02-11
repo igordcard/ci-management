@@ -385,8 +385,19 @@
 - publisher:
     name: ta-publisher-job-merge
     publishers:
-      - lf-infra-publish
+      - ta-publisher-ci-build:
+          arch: '{arch}'
       - trigger-parameterized-builds:
           - project: 'ta-ci-build-{arch}'
             condition: UNSTABLE_OR_BETTER
             trigger-with-no-params: true
+
+- publisher:
+    name: ta-publisher-ci-build
+    publishers:
+      - lf-infra-publish
+      - email:
+          recipients: !j2: |
+            {%- if 'arm64' in arch -%}
+            armband@enea.com
+            {%- endif -%}
