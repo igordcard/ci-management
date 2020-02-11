@@ -15,7 +15,7 @@
     project-name: ta-build-tools-arm64
     project-type:
         - verify
-    build-node: aarch64_dev
+    build-node: aarch64_build
     stream: master
     jobs:
       - akraino-project-stream-type-ta-build

@@ -12,7 +12,7 @@
     name: ta-ci-build-arm64
     project: none
     project-name: none
-    build-node: aarch64_dev
+    build-node: aarch64_build
     stream: master
     build-timeout: 180
     jobs:
