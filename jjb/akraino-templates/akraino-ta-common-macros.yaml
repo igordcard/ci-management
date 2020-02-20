@@ -112,11 +112,12 @@
 - builder:
     name: ta-builder-tox
     builders:
-        - lf-pip-install:
-            pip-packages: tox
         - shell: |2-
             #!/bin/bash -ex
-            source /tmp/v/tox/bin/activate
+            source ~/lf-env.sh
+
+            lf-activate-venv tox
+            tox --version
             for f in $(find $GERRIT_PROJECT -name tox.ini); do
                 pushd $(dirname $f)
                 tox
