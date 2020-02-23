@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -l
 # SPDX-License-Identifier: EPL-1.0
 ##############################################################################
 # Copyright (c) 2017 The Linux Foundation and others.
@@ -15,6 +15,8 @@ echo "---> ta-iso-deploy.sh"
 set -eu -o pipefail
 
 set -x  # Trace commands for this script to make debugging easier.
+
+set +f  # Ensure filename expansion (globbing) is enabled
 
 NEXUS_REPO=images-snapshots
 release_path=TA/release-1

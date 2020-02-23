@@ -201,6 +201,7 @@
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
           - ../../global-jjb/shell/python-tools-install.sh
+      - shell: !include-raw:
           - ../shell/ta-rpm-deploy.sh
       - shell: !include-raw:
           - ../../global-jjb/shell/logs-clear-credentials.sh
@@ -220,6 +221,7 @@
           # Ensure python-tools are installed in case job template does not
           # call the lf-infra-pre-build macro.
           - ../../global-jjb/shell/python-tools-install.sh
+      - shell: !include-raw:
           - ../shell/ta-iso-deploy.sh
       - shell: !include-raw:
           - ../../global-jjb/shell/logs-clear-credentials.sh
