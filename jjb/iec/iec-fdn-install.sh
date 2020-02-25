@@ -18,5 +18,7 @@ HOST_USER=root
 export HOST_USER
 ./startup.sh
 
+# Fix permissions so we can archive log files before pushing to Nexus
+sudo chown $(id -u):$(id -g) -R "${WORKSPACE}"
 
 exit 0

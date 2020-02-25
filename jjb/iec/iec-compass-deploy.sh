@@ -46,4 +46,6 @@ echo "Compass Deploy successful"
 
 rm -rf "$COMPASS_WORK_DIR"
 rm -rf work
+# Fix permissions so we can archive log files before pushing to Nexus
+sudo chown $(id -u):$(id -g) -R "${WORKSPACE}"
 exit 0
