@@ -36,8 +36,11 @@ ln -s $COMPASS_WORK_DIR work
 
 sudo docker rm -f `sudo docker ps | grep compass | cut -f1 -d' '` || true
 
-curl -s http://people.linaro.org/~yibo.cai/compass/compass4nfv-arm64-fixup.sh | bash || true
+curl -sL http://people.linaro.org/~yibo.cai/compass/compass4nfv-arm64-fixup.sh | bash || true
 
 ./build.sh
+
+# Fix permissions so we can archive log files before pushing to Nexus
+sudo chown $(id -u):$(id -g) -R "${WORKSPACE}"
 
 exit 0
