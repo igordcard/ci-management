@@ -19,11 +19,11 @@ set -x  # Trace commands for this script to make debugging easier.
 set +f  # Ensure filename expansion (globbing) is enabled
 
 NEXUS_REPO=images-snapshots
-release_path=TA/release-1
+release_path=TA/images/${JOB_NAME##*-}
 
 repo_dir="$WORKSPACE/work/nexus/$NEXUS_REPO"
-upload_dir1="$repo_dir/$release_path/images/$BUILD_ID"
-upload_dir2="$repo_dir/$release_path/images/latest"
+upload_dir1="$repo_dir/$release_path/$BUILD_ID"
+upload_dir2="$repo_dir/$release_path/latest"
 nexus_repo_url="$NEXUS_URL/content/repositories/$NEXUS_REPO"
 
 mkdir -p "$upload_dir1"
@@ -43,6 +43,7 @@ cp "$WORKSPACE/work/results/images/"* "$upload_dir2"
 
 echo "-----> Upload ISOs to Nexus"
 lftools deploy nexus "$nexus_repo_url" "$repo_dir"
+rm -rf "$repo_dir"
 
 set +x  # Disable trace since we no longer need it.
 echo "ISOs location: <a href=\"$nexus_repo_url\">$nexus_repo_url</a>"
