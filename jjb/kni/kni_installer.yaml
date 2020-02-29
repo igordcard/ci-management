@@ -18,6 +18,7 @@
     branch: master
     jobs:
       - kni-verify-deploy-aws
+      - kni-verify-deploy-gcp
       - kni-verify-deploy-libvirt
       - kni-verify-deploy-baremetal
 
@@ -29,5 +30,6 @@
     branch: master
     jobs:
       - kni-verify-deploy-aws
+      - kni-verify-deploy-gcp
       - kni-verify-deploy-libvirt
       - kni-verify-deploy-baremetal
