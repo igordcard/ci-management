@@ -22,12 +22,23 @@ check_env(){
   fi
 }
 
+checkout_arm64(){
+  VERSION="dcc6d07"
+  git checkout ${VERSION}
+  sed -i 's:opnfv/:cyb70289/:' build/build-aarch64.yaml
+}
+
 check_env
 
 echo "begin build compass"
 git clone https://github.com/opnfv/compass4nfv.git
 
 cd compass4nfv
+
+if [ "$(uname -m)" = 'aarch64' ]; then
+  echo "Checkout compass4nfv to Arm64 version"
+  checkout_arm64
+fi
 
 COMPASS_WORK_DIR=$WORKSPACE/../compass-work
 
