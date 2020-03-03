@@ -16,7 +16,7 @@ export TMPDIR=${HOME}/tmpdir
 if [ "$(uname -m)" = 'aarch64' ]; then
     LAB_NAME='arm'
     # shellcheck disable=SC2153
-    POD_NAME=${NODE_NAME/*ubuntu1604-dev-48c-256g-/virtual}
+    POD_NAME=${NODE_NAME/*ubuntu1804-dev-48c-256g-/virtual}
 else
     echo "Unavailable hardware. Cannot continue!"
     exit 1
