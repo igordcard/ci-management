@@ -20,36 +20,30 @@ check_env(){
     rm get-pip.py
     hash -r
   fi
+
+  # Clean environment
+  sudo docker rm -f `sudo docker ps | grep compass | cut -f1 -d' '` || true
 }
 
-checkout_arm64(){
-  VERSION="dcc6d07"
-  git checkout ${VERSION}
-  sed -i 's:opnfv/:cyb70289/:' build/build-aarch64.yaml
+build_compass(){
+
+  echo "Clone compass4nfv"
+  git clone -b CompassinAkrainoIEC https://github.com/iecedge/compass4nfv.git
+
+  cd compass4nfv
+
+  COMPASS_WORK_DIR=$WORKSPACE/../compass-work
+
+  mkdir -p $COMPASS_WORK_DIR
+  ln -snf $COMPASS_WORK_DIR work
+
+  ./build.sh
 }
 
 check_env
 
-echo "begin build compass"
-git clone https://github.com/opnfv/compass4nfv.git
-
-cd compass4nfv
-
-if [ "$(uname -m)" = 'aarch64' ]; then
-  echo "Checkout compass4nfv to Arm64 version"
-  checkout_arm64
-fi
-
-COMPASS_WORK_DIR=$WORKSPACE/../compass-work
-
-mkdir -p $COMPASS_WORK_DIR
-ln -s $COMPASS_WORK_DIR work
-
-sudo docker rm -f `sudo docker ps | grep compass | cut -f1 -d' '` || true
-
-curl -sL http://people.linaro.org/~yibo.cai/compass/compass4nfv-arm64-fixup.sh | bash || true
-
-./build.sh
+# Build compass
+build_compass
 
 # Fix permissions so we can archive log files before pushing to Nexus
 sudo chown $(id -u):$(id -g) -R "${WORKSPACE}"
