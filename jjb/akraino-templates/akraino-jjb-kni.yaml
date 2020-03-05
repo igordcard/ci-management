@@ -246,6 +246,7 @@
     id: kni-verify-deploy-libvirt
     name: 'kni-{project-name}-verify-deploy-libvirt'
     build-node: kni-libvirt
+    build-timeout: 120
     <<: *kni_common_deploy
 
     gerrit_trigger_file_paths:
