@@ -274,7 +274,7 @@
     name: 'kni-{project-name}-verify-deploy-baremetal'
     <<: *kni_common_deploy
     build-timeout: 120
-    build-node: kni-baremetal
+    build-node: kni-libvirt
 
     gerrit_trigger_file_paths:
       - compare-type: ANT
@@ -287,14 +287,14 @@
     scm:
       - akraino-lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
-          git-url: 'https://github.com/yrobla/testing.baremetal.edge-sites.net'
+          git-url: 'https://github.com/akraino-edge-stack/kni-blueprint-pae'
           refspec: '$GERRIT_REFSPEC'
           branch: '$GERRIT_BRANCH'
           submodule-recursive: '{submodule-recursive}'
           submodule-timeout: '{submodule-timeout}'
           submodule-disable: false
           choosing-strategy: default
-          basedir: 'testing.baremetal.edge-sites.net'
+          basedir: 'kni-blueprint-pae'
       - akraino-lf-infra-gerrit-scm:
           jenkins-ssh-credential: '{jenkins-ssh-credential}'
           git-url: '{git-url}/kni/installer.git'
