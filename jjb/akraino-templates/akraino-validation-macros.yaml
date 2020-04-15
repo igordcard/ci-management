@@ -5,38 +5,7 @@
 - parameter:
     name: bluval-defaults
     parameters:
-      - string: &cluster_master_ip
-          name: CLUSTER_MASTER_IP
-          default: ''
-          description: 'IP address to connect to the cluster master'
-      - string: &cluster_ssh_user
-          name: CLUSTER_SSH_USER
-          default: ''
-          description: 'SSH username to connect to the cluster master '
-      - string: &cluster_ssh_password
-          name: CLUSTER_SSH_PASSWORD
-          default: ''
-          description: 'SSH password to connect to the cluster master'
-      - string: &cluster_ssh_key
-          name: CLUSTER_SSH_KEY
-          default: ''
-          description: 'SSH key to connect to the cluster master'
-      - string: &blueprint_name
-          name: BLUEPRINT
-          default: ''
-          description: 'Blueprint used'
-      - string: &layer
-          name: LAYER
-          default: ''
-          description: 'Layer'
-      - string: &version
-          name: VERSION
-          default: ''
-          description: 'Version'
-      - string: &optional
-          name: OPTIONAL
-          default: ''
-          description: 'If set to yes run optional tests'
+      - lab_params
       - string:
           name: LAB_SILO
           default: ''
@@ -50,21 +19,37 @@
     name: lab_params
     parameters:
       - string:
-          <<: *cluster_master_ip
+          name: CLUSTER_MASTER_IP
+          default: ''
+          description: 'IP address to connect to the cluster master'
       - string:
-          <<: *cluster_ssh_user
+          name: CLUSTER_SSH_USER
+          default: ''
+          description: 'SSH username to connect to the cluster master '
       - string:
-          <<: *cluster_ssh_password
+          name: CLUSTER_SSH_PASSWORD
+          default: ''
+          description: 'SSH password to connect to the cluster master'
       - string:
-          <<: *cluster_ssh_key
+          name: CLUSTER_SSH_KEY
+          default: ''
+          description: 'SSH key to connect to the cluster master'
       - string:
-          <<: *blueprint_name
+          name: BLUEPRINT
+          default: ''
+          description: 'Blueprint used'
       - string:
-          <<: *layer
+          name: LAYER
+          default: ''
+          description: 'Layer'
       - string:
-          <<: *version
+          name: VERSION
+          default: ''
+          description: 'Version'
       - string:
-          <<: *optional
+          name: OPTIONAL
+          default: ''
+          description: 'If set to yes run optional tests'
 
 ############
 # SETTINGS #
