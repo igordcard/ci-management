@@ -47,6 +47,7 @@
               DEPLOY_SCENARIO={scenario}
             same-node: true
             block: true
+      - trigger-builds:
           - project: 'validation-enea-daily-{stream}'
             same-node: true
             current-parameters: true
