@@ -61,6 +61,7 @@
             block: true
           - project:
               !j2: |
+                {%- if deploy_type not in ['virtual'] -%}
                 {%- for uc in usecase -%}
                 {%- for ph in phase -%}
                 iec-{{ iecType }}-{{ ph }}-{{ uc }}-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
@@ -68,6 +69,7 @@
                 {%- endfor %}
                 {%- if not loop.last -%},{%- endif -%}
                 {%- endfor %}
+                {%- endif -%}
             current-parameters: true
             same-node: true
             block: true
