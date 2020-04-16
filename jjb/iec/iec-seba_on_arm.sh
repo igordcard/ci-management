@@ -9,7 +9,7 @@
 ##############################################################################
 
 export TERM="vt220"
-set -x
+set -ex
 
 echo "JOB_NAME=${JOB_NAME}"
 
@@ -101,7 +101,6 @@ case "${JOB_NAME}" in
     echo "${TEST_CMD}"
 
     eval ${TEST_CMD}
-    exit_code=$?
     ;;
   *)
     echo "Cannot determine what to do for seba_on_arm from ${JOB_NAME}"
