@@ -130,7 +130,7 @@
     id: bluval-run-daily-tests
     name: 'bluval-daily-{stream}'
     concurrent: true
-    node: '{build-node}'
+    node: 'master'
     parameters:
       - lf-infra-parameters: *validation_lf_infra_parameters
       - string:
@@ -152,8 +152,8 @@
     builders:
       - description-setter:
           description: "POD: $NODE_NAME<br/>BLUEPRINT: $BLUEPRINT<br/>LAB: $LAB_SILO<br/>LAYER: $LAYER"
-      - lf-infra-create-netrc:
-          server-id: logs
+          #      - lf-infra-create-netrc:
+          #          server-id: logs
       - shell: !include-raw-escape:
         - ../shell/run_bluval.sh
 
