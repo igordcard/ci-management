@@ -88,6 +88,8 @@
       - gerrit-sonar:
           sonar-project-file: ""
           build-node: centos7-builder-2c-1g
+          submodule-recursive: false
+          submodule-disable: true
           sonar-properties: |
             # Required metadata
             sonar.projectKey=iec
