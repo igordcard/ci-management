@@ -151,7 +151,7 @@
 
     builders:
       - description-setter:
-          description: "POD: $NODE_NAME"
+          description: "POD: $NODE_NAME<br/>BLUEPRINT: $BLUEPRINT<br/>LAB: $LAB_SILO<br/>LAYER: $LAYER"
       - lf-infra-create-netrc:
           server-id: logs
       - shell: !include-raw-escape:
