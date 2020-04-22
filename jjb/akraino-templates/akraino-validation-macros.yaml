@@ -50,6 +50,10 @@
           name: OPTIONAL
           default: ''
           description: 'If set to yes run optional tests'
+      - string:
+          name: PULL
+          default: 'false'
+          description: 'If set to yes pull docker images before run'
 
 ############
 # SETTINGS #

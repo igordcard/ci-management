@@ -15,6 +15,7 @@ export PATH=$PATH:/home/jenkins/.local/bin
 cwd=$(pwd)
 current_user=$(whoami)
 is_optional="false"
+pull="false"
 
 info ()  {
     logger -s -t "run_blu_val.info" "$*"
@@ -66,7 +67,7 @@ error () {
 }
 
 # Get options from shell
-while getopts "j:k:u:s:b:l:r:n:ov:" optchar; do
+while getopts "j:k:u:s:b:l:r:n:opv:" optchar; do
     case "${optchar}" in
         j) cluster_master_ip=${OPTARG} ;;
         k) k8s_config_dir=${OPTARG} ;;
@@ -76,6 +77,7 @@ while getopts "j:k:u:s:b:l:r:n:ov:" optchar; do
         n) blueprint_name=${OPTARG} ;;
         u) sh_user=${OPTARG} ;;
         o) is_optional="true"  ;;
+        p) pull="true"  ;;
         v) version=${OPTARG} ;;
         *) echo "Non-option argument: '-${OPTARG}'" >&2
            usage
@@ -161,6 +163,10 @@ fi
 if [ "$is_optional" == "true" ] || [ "$OPTIONAL" == "yes" ]
 then
     options+=" -o"
+fi
+if [ "$pull" == "true" ] || [ "$PULL" == "yes" ]
+then
+    options+=" -p"
 fi
 
 set +e

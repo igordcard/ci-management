@@ -59,6 +59,7 @@
               BLUEPRINT={project-name}
               VERSION=master
               OPTIONAL=false
+              PULL=yes
             block: true
           - project:
               !j2: |
