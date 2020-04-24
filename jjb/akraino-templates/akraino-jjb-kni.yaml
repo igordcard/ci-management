@@ -178,23 +178,6 @@
           - ../shell/build_kni_binary.sh
 
 - job-template:
-    id: kni-installer-publish-openshift-install-libvirt-binary
-    name: '{project-name}-publish-openshift-install-libvirt-binary'
-    <<: *kni_common
-    build-node: centos7-builder-8c-8g
-
-    gerrit_trigger_file_paths: []
-    gerrit_build_triggers:
-      - comment-added-contains-event:
-          comment-contains-value: '^build-binary'
-    builders:
-      - lf-infra-pre-build
-      - shell: !include-raw-escape:
-          - ../shell/install_go.sh
-      - shell: !include-raw-escape:
-          - ../shell/build_openshift_install_libvirt_binary.sh
-
-- job-template:
     id: kni-verify-deploy-aws
     name: 'kni-{project-name}-verify-deploy-aws'
     build-node: kni-libvirt
@@ -241,33 +224,6 @@
       - shell: !include-raw-escape:
           - ../shell/install_go.sh
       - shell: ./installer/ci/kni_deploy_gcp.sh
-
-- job-template:
-    id: kni-verify-deploy-libvirt
-    name: 'kni-{project-name}-verify-deploy-libvirt'
-    build-node: kni-libvirt
-    build-timeout: 120
-    <<: *kni_common_deploy
-
-    gerrit_trigger_file_paths:
-      - compare-type: ANT
-        pattern: 'profiles/testing.libvirt/**'
-      - compare-type: ANT
-        pattern: 'sites/testing.virt.edge-sites.net/**'
-      - compare-type: ANT
-        pattern: 'base/**'
-
-    builders:
-      - lf-infra-pre-build
-      - config-file-provider:
-          files:
-            - file-id: kni-coreos-pull-secret
-              target: akraino-secrets/coreos-pull-secret
-            - file-id: kni-ssh-pub-key
-              target: akraino-secrets/ssh-pub-key
-      - shell: !include-raw-escape:
-          - ../shell/install_go.sh
-      - shell: ./installer/ci/kni_deploy_libvirt.sh
 
 - job-template:
     id: kni-verify-deploy-baremetal

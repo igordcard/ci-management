@@ -8,7 +8,6 @@
     jobs:
       - kni-installer-verify-installer
       - kni-installer-verify-binary
-      - kni-installer-publish-openshift-install-libvirt-binary
 
 - project:
     name: kni-blueprint-pae
@@ -19,7 +18,6 @@
     jobs:
       - kni-verify-deploy-aws
       - kni-verify-deploy-gcp
-      - kni-verify-deploy-libvirt
       - kni-verify-deploy-baremetal
 
 - project:
@@ -31,5 +29,4 @@
     jobs:
       - kni-verify-deploy-aws
       - kni-verify-deploy-gcp
-      - kni-verify-deploy-libvirt
       - kni-verify-deploy-baremetal
