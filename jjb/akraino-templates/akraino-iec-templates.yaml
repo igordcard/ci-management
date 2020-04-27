@@ -79,7 +79,11 @@
               build-step-failure-threshold: 'never'
               failure-threshold: 'never'
               unstable-threshold: 'FAILURE'
-          - project: 'iec-{iecType}-destroy-{installer}-{deploy_type}-{os}-daily-{stream}'
+          - project:
+              !j2: |
+                {%- if deploy_type in ['virtual'] -%}
+                iec-{{ iecType }}-destroy-{{ installer }}-{{ deploy_type }}-{{ os }}-daily-{{ stream }}
+                {%- endif -%}
             current-parameters: false
             predefined-parameters: |
               DEPLOY_SCENARIO={scenario}
@@ -160,10 +164,8 @@
             - shell:
                 !include-raw-escape: ../iec/iec-fuel-deploy.sh
 
-    publishers: &publishers
-      - email:
-          recipients: armband@enea.com
-      - lf-infra-publish
+    publishers:
+      - iec-default-publisher
 
 - job-template:
     id: akraino-iec-destroy
@@ -197,7 +199,8 @@
       - shell:
           !include-raw-escape: ../iec/iec-{installer}-destroy.sh
 
-    publishers: *publishers
+    publishers:
+      - iec-default-publisher
 
 - job-template:
     id: akraino-iec-phase-usecase
@@ -225,4 +228,5 @@
       - shell:
           !include-raw-escape: ../iec/iec-{usecase}.sh
 
-    publishers: *publishers
+    publishers:
+      - 'iec-{phase}-usecase-publisher'
